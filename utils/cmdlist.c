@@ -1,5 +1,6 @@
 #include <string.h>
 #include<stdlib.h>
+#include<stdio.h>
 #include "cmdlist.h"
 
 struct tokenInfo tokenizeCmd(char* cmd, char* delimiter)

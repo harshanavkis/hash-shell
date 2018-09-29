@@ -24,13 +24,14 @@ int main(int argc, char* argv[])
 
   while(1)
     {
-      getline(&cmd, &bufLen, stdin);
-      char* pos;
-      if((pos=strchr(cmd, '\n')) != NULL)
-        *pos = '\0';
+      bufLen = getline(&cmd, &bufLen, stdin);
 
       if(strncmp(exitCmd, cmd, 5)==0)
 	exit(0);
+
+      char* pos;
+      if((pos=strchr(cmd, '\n')) != NULL)
+        *pos = '\0';
 
       int rc = fork();
 
