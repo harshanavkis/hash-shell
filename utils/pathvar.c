@@ -8,12 +8,14 @@
 char* setPath(char* cmd)
 {
   char* delimiter = " "; //you can do better
-  char *token = strtok(cmd, delimiter);
+  char* temp = strdup(cmd);
+  char* context;
+  char *token = strtok_r(temp, delimiter, &context);
   if(strcmp(token, "$PATH")==0)
   {
-    token = strtok(NULL, delimiter);
-    token = strtok(NULL, delimiter);
-    return token;
+    char* last = strtok_r(NULL, delimiter, &context);
+    last       = strtok_r(NULL, delimiter, &context);
+    return last;
   }
   else
   {

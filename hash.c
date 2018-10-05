@@ -37,6 +37,16 @@ int main(int argc, char* argv[])
       if((pos=strchr(cmd, '\n')) != NULL)
         *pos = '\0';
 
+      char* temp = strdup(cmd);
+      char* newPath = setPath(temp);
+      if(newPath!=NULL)
+      {
+        printf("%s\n", newPath);
+        appendPath(newPath, &head);
+        printf(">hash ");
+        continue;
+      }
+
       int rc = fork();
 
       if(rc<0)
@@ -54,7 +64,7 @@ int main(int argc, char* argv[])
 
     if(path==NULL)
     {
-      printf("\'%s\' command not found in the current path.\n Try adding the path of the command through: $PATH -a [cmd].\n", cmd);
+      printf("\'%s\' command not found in the current path.\n Try adding the path of the command through: $PATH -a [path].\n", cmd);
       break;
     }
 
