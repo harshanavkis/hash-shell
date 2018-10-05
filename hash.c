@@ -5,6 +5,7 @@
 #include<sys/wait.h>
 #include<string.h>
 #include "utils/cmdlist.h"
+#include "utils/pathvar.h"
 
 int main(int argc, char* argv[])
 {
@@ -21,6 +22,9 @@ int main(int argc, char* argv[])
   printf(">hash ");
 
   char *path = "/bin/";
+  struct pathNode* head = (struct pathNode*) malloc(sizeof(struct pathNode));
+  head->parDir = path;
+  head->next   = NULL;
 
   while(1)
     {
@@ -46,7 +50,15 @@ int main(int argc, char* argv[])
 
 	  struct tokenInfo tI = tokenizeCmd(cmd, delimiter);
 
-    char *s = concat(path, tI.commands[0]);
+    struct pathNode* path = retCmdLoc(tI.commands[0], head);
+
+    if(path==NULL)
+    {
+      printf("\'%s\' command not found in the current path.\n Try adding the path of the command through: $PATH -a [cmd].\n", cmd);
+      break;
+    }
+
+    char *s = concat(path->parDir, tI.commands[0]);
 	  execv(s, tI.commands);
 	  break;
 	}
