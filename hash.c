@@ -16,6 +16,7 @@ int main(int argc, char* argv[])
     }
 
   char* exitCmd = "exit\n";
+  char* changeDir = "cd";
   char *cmd = NULL;
   size_t bufLen = 0;
 
@@ -30,8 +31,28 @@ int main(int argc, char* argv[])
     {
       bufLen = getline(&cmd, &bufLen, stdin);
 
+      //shift exit, cd, path to different header file
       if(strncmp(exitCmd, cmd, 5)==0)
-	exit(0);
+	      exit(0);
+      else if(strncmp(changeDir, cmd, 2)==0)
+      {
+        char* pos;
+        if((pos=strchr(cmd, '\n')) != NULL)
+          *pos = '\0';
+        struct tokenInfo cd = tokenizeCmd(cmd, " ");
+        int errcd = chdir(cd.commands[1]);
+        if(errcd==0)
+        {
+          printf(">hash ");
+          continue;
+        }
+        else
+        {
+          printf("Unable to change directory. %s:directory doesn't exist\n", cd.commands[1]);
+          printf(">hash ");
+          continue;
+        }
+      }
 
       char* pos;
       if((pos=strchr(cmd, '\n')) != NULL)
