@@ -6,7 +6,7 @@ int chooseCmd(char* cmd, struct pathNode** head)
   char* temp    = cmd;
   char* exitCmd = "exit";
   char* cdCmd   = "cd";
-  // char* pathCmd = "path";
+  char* pathCmd = "path";
   if(strncmp(temp, exitCmd, 4)==0)
   {
     execExit();
@@ -17,10 +17,10 @@ int chooseCmd(char* cmd, struct pathNode** head)
     execCd(temp);
     return 0;
   }
-  // else if(strncmp(temp, pathCmd, 4))
-  // {
-  //   execPath(temp, head);
-  //   return 0;
-  // }
+  else if(strncmp(temp, pathCmd, 4)==0)
+  {
+    execPath(temp, head);
+    return 0;
+  }
   return 1;
 }

@@ -10,6 +10,6 @@
 
 void execExit();
 void execCd(char* cmd);
-// void execPath(char* cmd, struct pathNode** head);
+void execPath(char* cmd, struct pathNode** head);
 
 #endif

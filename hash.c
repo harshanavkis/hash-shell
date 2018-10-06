@@ -21,37 +21,13 @@ int main(int argc, char* argv[])
 
   printf(">hash ");
 
-  char *path = "/bin/";
   struct pathNode* head = (struct pathNode*) malloc(sizeof(struct pathNode));
-  head->parDir = path;
+  head->parDir = "/bin/";
   head->next   = NULL;
 
   while(1)
     {
       bufLen = getline(&cmd, &bufLen, stdin);
-
-      // //shift exit, cd, path to different header file
-      // if(strncmp(exitCmd, cmd, 5)==0)
-	    //   exit(0);
-      // else if(strncmp(changeDir, cmd, 2)==0)
-      // {
-      //   char* pos;
-      //   if((pos=strchr(cmd, '\n')) != NULL)
-      //     *pos = '\0';
-      //   struct tokenInfo cd = tokenizeCmd(cmd, " ");
-      //   int errcd = chdir(cd.commands[1]);
-      //   if(errcd==0)
-      //   {
-      //     printf(">hash ");
-      //     continue;
-      //   }
-      //   else
-      //   {
-      //     printf("Unable to change directory. %s:directory doesn't exist\n", cd.commands[1]);
-      //     printf(">hash ");
-      //     continue;
-      //   }
-      // }
 
       char* pos;
       if((pos=strchr(cmd, '\n')) != NULL)

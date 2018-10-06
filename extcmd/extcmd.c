@@ -19,3 +19,21 @@ void execCd(char* cmd)
     printf(">hash ");
   }
 }
+
+void execPath(char* cmd, struct pathNode** head)
+{
+  struct tokenInfo p = tokenizeCmd(cmd, " ");
+  int i;
+
+  struct pathNode* temp = (struct pathNode*)malloc(sizeof(struct pathNode));
+  temp->parDir = p.commands[1];
+  temp->next = NULL;
+
+  for(i=2; i<p.noc-1; i++)
+  {
+    printf("%d\n", i);
+    appendPath(p.commands[i], &temp);
+  }
+  *head = temp;
+  printf(">hash ");
+}
