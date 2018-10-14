@@ -12,10 +12,10 @@ struct tokenInfo tokenizeCmd(char* cmd, char* delimiter)
   struct tokenInfo tI;
 
   while(token != NULL)
-    {
-      token = strtok(NULL, delimiter);
-      count++;
-    }
+  {
+    token = strtok(NULL, delimiter);
+    count++;
+  }
   tI.noc = count;
   char** commands;
   commands = malloc((tI.noc+1)*sizeof(char*));

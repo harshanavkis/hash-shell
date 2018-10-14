@@ -12,15 +12,15 @@ char* setPath(char* cmd)
   char* context;
   char *token = strtok_r(temp, delimiter, &context);
   if(strcmp(token, "$PATH")==0)
-  {
-    char* last = strtok_r(NULL, delimiter, &context);
-    last       = strtok_r(NULL, delimiter, &context);
-    return last;
-  }
+    {
+      char* last = strtok_r(NULL, delimiter, &context);
+      last       = strtok_r(NULL, delimiter, &context);
+      return last;
+    }
   else
-  {
-    return NULL;
-  }
+    {
+      return NULL;
+    }
 }
 
 void appendPath(char* path, struct pathNode** head)

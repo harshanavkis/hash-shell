@@ -114,32 +114,32 @@ int main(int argc, char* argv[])
       int rc = fork();
 
       if(rc<0)
-	{
-	  fprintf(stderr, "Something went horribly wrong!!\n");
-	  exit(1);
-	}
+      	{
+      	  fprintf(stderr, "Something went horribly wrong!!\n");
+      	  exit(1);
+      	}
       else if(rc==0)
-	{
-    char* delimiter = " ";
+      	{
+          char* delimiter = " ";
 
-	  struct tokenInfo tI = tokenizeCmd(cmd, delimiter);
+      	  struct tokenInfo tI = tokenizeCmd(cmd, delimiter);
 
-    struct pathNode* path = retCmdLoc(tI.commands[0], head);
+          struct pathNode* path = retCmdLoc(tI.commands[0], head);
 
-    if(path==NULL)
-    {
-      printf("\'%s\' command not found in the current path.\n Try adding the path of the command through: $PATH -a [path].\n", cmd);
-      break;
-    }
+          if(path==NULL)
+          {
+            printf("\'%s\' command not found in the current path.\n Try adding the path of the command through: $PATH -a [path].\n", cmd);
+            break;
+          }
 
-    char *s = concat(path->parDir, tI.commands[0]);
-	  execv(s, tI.commands);
-	  break;
-	}
+          char *s = concat(path->parDir, tI.commands[0]);
+      	  execv(s, tI.commands);
+      	  break;
+      	}
       else
-	{
-	  wait(NULL);
-	  printf(">hash ");
-	}
+      	{
+      	  wait(NULL);
+      	  printf(">hash ");
+      	}
     }
 }
