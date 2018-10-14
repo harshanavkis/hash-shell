@@ -49,3 +49,18 @@ char* concat(const char *s1, const char *s2)
   strcat(result, s2);
   return result;
 }
+
+int spaceCount(char* file)
+{
+  int count = 0;
+  int len   = strlen(file);
+  int i;
+  for(i=0; i<len; i++)
+  {
+    if(file[i]==' ')
+    {
+      count++;
+    }
+  }
+  return count;
+}

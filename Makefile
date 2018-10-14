@@ -1,5 +1,5 @@
-hash: hash.o cmdlist.o pathvar.o cmdalloc.o extcmd.o
-	gcc -o hash hash.o cmdlist.o pathvar.o cmdalloc.o extcmd.o
+hash: hash.o cmdlist.o pathvar.o cmdalloc.o extcmd.o redir.o
+	gcc -o hash hash.o cmdlist.o pathvar.o cmdalloc.o extcmd.o redir.o
 
 hash.o: hash.c
 	gcc -O -Wall -Werror -c hash.c
@@ -15,6 +15,9 @@ extcmd.o: extcmd/extcmd.c
 
 cmdalloc.o: extcmd/cmdalloc.c
 	gcc -O -Wall -Werror -c extcmd/cmdalloc.c
+
+redir.o: features/redir.c
+	gcc -O -Wall -Werror -c features/redir.c
 
 clean:
 	rm -f hash.o cmdlist.o extcmd.o cmdalloc.o hash

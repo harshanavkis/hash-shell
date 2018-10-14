@@ -11,4 +11,6 @@ struct tokenInfo tokenizeCmd(char* cmd, char* delimiter);
 
 char* concat(const char *s1, const char *s2);
 
+int spaceCount(char* file);
+
 #endif
